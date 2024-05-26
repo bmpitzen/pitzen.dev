@@ -1,34 +1,32 @@
 <script setup lang="ts">
-import { useColorMode, useCycleList } from '@vueuse/core'
-import { watchEffect } from 'vue-demi'
+import { Icon } from "@iconify/vue";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const mode = useColorMode({
-  emitAuto: true,
-})
-
-const { state, next } = useCycleList(['dark', 'light', 'auto'], { initialValue: mode })
-
-watchEffect(() => mode.value = state.value as any)
+const colorMode = useColorMode();
 </script>
 
 <template>
-  <DropdownMenu>
-    <DropdownMenuTrigger class="inline-block px-4 py-2 text-white bg-blue-600 rounded">
-      Theme
-    </DropdownMenuTrigger>
-    <DropdownMenuContent align="end">
-      <DropdownMenuItem @click="state= 'auto'">
-        System
-      </DropdownMenuItem>
-      <DropdownMenuItem @click="state= 'light'">
-        Light
-      </DropdownMenuItem>
-      <DropdownMenuItem @click="state= 'dark'">
-        Dark
-      </DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
+  <Button
+    variant="ghost"
+    class="h-8 w-8"
+    size="icon"
+    @click="colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'"
+  >
+    <Icon
+      icon="radix-icons:moon"
+      class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+    />
+    <Icon
+      icon="radix-icons:sun"
+      class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+    />
+    <span class="sr-only">Toggle theme</span>
+  </Button>
 </template>
 
-<style>
-</style>
