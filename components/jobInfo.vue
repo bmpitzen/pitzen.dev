@@ -50,3 +50,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+* {
+  color: var(--text-primary);
+}
+
+</style>

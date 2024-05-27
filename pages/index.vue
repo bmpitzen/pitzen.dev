@@ -35,47 +35,45 @@ const ArcESBBadges = [
 
 <template>
   <div>
-  <div class="container grid grid-cols-3 mt-10 mb-10">
-    <div class="col-span-2">
-      <h1>About</h1>
-      <p class="scroll-m-20 text-lg text-gray-500 lg:text-xl my-4">
-        I am a software engineer with a passion for creating and building
-        things. I have experience in full-stack development, with a focus on
-        front-end technologies. I am always looking for new opportunities to
-        learn and grow.
-      </p>
-      <p class="scroll-m-20 text-lg text-gray-500 lg:text-xl my-4">
-        I am currently a UX Engineer at Jamf, where I design and implement user
-        interfaces that enhance the user experience of our software products. I
-        collaborate with cross-functional teams to gather requirements, conduct
-        user research, and create wireframes and prototypes. I also work closely
-        with developers to ensure the seamless integration of design and
-        functionality. Additionally, I conduct usability testing and iterate on
-        designs based on user feedback. Overall, my goal is to create intuitive
-        and visually appealing interfaces that optimize user satisfaction and
-        engagement.
-      </p>
-      <p class="scroll-m-20 text-lg text-gray-500 lg:text-xl my-4">
-        Previously, I worked at McKesson (later moved under the Ontada
-        subsidiary) as a full-stack software engineer. During my time there, I
-        gained responsibility as a Scrum Leader on our team and further niched
-        down my work into front-end development while helping to build our
-        design system and rebrand our flagship application - Clear Value Plus.
-      </p>
+    <div class="container grid grid-cols-1 mt-10 mb-10 lg:grid-cols-3">
+      <div
+        class="lg:col-start-3 flex items-center gap-2 lg:justify-end justify-center lg:row-start-1 mb-10"
+      >
+        <Avatar size="xl" shape="square">
+          <AvatarImage
+            src="https://bmpitzen-portfolio.s3.us-east-2.amazonaws.com/Brandon_Hat_Sage_v2.png"
+            alt="Brandon Pitzen"
+          />
+          <AvatarFallback>BP</AvatarFallback>
+        </Avatar>
+      </div>
+      <div class="col-span-3 lg:col-span-2 lg:row-start-1">
+        <h1>Hi! I'm Brandon</h1>
+        <p class="scroll-m-20 text-lg lg:text-xl my-4">
+          I am a software engineer passionate about creating and building
+          things, with a focus on front-end technologies. Currently, I work as a
+          UX Engineer at Jamf, where I design and implement user interfaces to
+          enhance the user experience of our software products. I collaborate
+          with cross-functional teams to gather requirements, conduct user
+          research, create wireframes and prototypes, and ensure seamless
+          integration of design and functionality. I also conduct usability
+          testing and iterate on designs based on user feedback.
+        </p>
+        <p class="scroll-m-20 text-lg lg:text-xl my-4">
+          Previously, I worked at McKesson (later Ontada) as a full-stack
+          software engineer, where I served as a Scrum Leader and specialized in
+          front-end development. I contributed to building our design system and
+          rebranding our flagship application, Clear Value Plus.
+        </p>
+        <p class="scroll-m-20 text-lg lg:text-xl my-4">
+          Outside of work, I am an avid ultra-marathon runner, hiker, dad, and
+          film photography enthusiast. I am always seeking new opportunities to
+          learn, grow, and take on new challenges.
+        </p>
+      </div>
     </div>
-
-    <div class="col-start-3 flex items-center gap-2 justify-end">
-      <Avatar size="xl" shape="square">
-        <AvatarImage
-          src="https://bmpitzen-portfolio.s3.us-east-2.amazonaws.com/Brandon_Hat_Sage_v2.png"
-          alt="Brandon Pitzen"
-        />
-        <AvatarFallback>BP</AvatarFallback>
-      </Avatar>
-    </div>
-  </div>
     <div class="experience-page container grid grid-cols-3 mt-10 mb-20">
-     <div class="col-span-3">
+      <div class="col-span-3">
         <h1 class="my-4">Experience</h1>
         <div class="experience-cards">
           <job-info
@@ -86,20 +84,21 @@ const ArcESBBadges = [
           >
             <template v-slot:description>
               As a UX Engineer at Jamf, my role involves designing and
-              implementing user interfaces that enhance the user experience of our
-              software products. I collaborate with cross-functional teams to
-              gather requirements, conduct user research, and create wireframes
-              and prototypes. I also work closely with developers to ensure the
-              seamless integration of design and functionality. Additionally, I
-              conduct usability testing and iterate on designs based on user
-              feedback. Overall, my goal is to create intuitive and visually
-              appealing interfaces that optimize user satisfaction and engagement.
+              implementing user interfaces that enhance the user experience of
+              our software products. I collaborate with cross-functional teams
+              to gather requirements, conduct user research, and create
+              wireframes and prototypes. I also work closely with developers to
+              ensure the seamless integration of design and functionality.
+              Additionally, I conduct usability testing and iterate on designs
+              based on user feedback. Overall, my goal is to create intuitive
+              and visually appealing interfaces that optimize user satisfaction
+              and engagement.
             </template>
             <template v-slot:responsibilities>
               <li>Built an active and thriving design system</li>
               <li>
-                Supported several JavaScript frameworks such as Angular, Vue, and
-                React
+                Supported several JavaScript frameworks such as Angular, Vue,
+                and React
               </li>
               <li>
                 Actively worked with developers throughout the product teams to
@@ -112,16 +111,16 @@ const ArcESBBadges = [
               <li>
                 Implemented a full redesign of our flagship Jamf Pro product to
                 align with the new designs. This brought the app into a more
-                modern design and improved the user experience. This also allowed
-                the developers to fully embrace and adopt our design syatem
-                leading to faster development and a more consistent user
+                modern design and improved the user experience. This also
+                allowed the developers to fully embrace and adopt our design
+                syatem leading to faster development and a more consistent user
                 experience.
               </li>
               <li>
                 Collaborated with the UX team to create a new design system that
-                is used across all of our products. This design system is used by
-                all of our developers and designers to ensure a consistent user
-                experience across all of our products.
+                is used across all of our products. This design system is used
+                by all of our developers and designers to ensure a consistent
+                user experience across all of our products.
               </li>
               <li>
                 Wrote and maintained documentation for our design system. This
@@ -131,11 +130,11 @@ const ArcESBBadges = [
             </template>
             <template v-slot:footer>
               <template v-for="item in jamfBadges">
-                <Badge class="m-1 bg-zinc-400">{{ item }}</Badge>
+                <Badge class="m-1">{{ item }}</Badge>
               </template>
             </template>
           </job-info>
-  
+
           <job-info
             :jobTitle="`Sr. Associate Software Engineer, Scrum Master`"
             :company="`Mckesson (Ontada)`"
@@ -164,16 +163,16 @@ const ArcESBBadges = [
                 flagship product
               </li>
               <li>
-                Designed and implemented completely new features to meet the needs
-                of our largest customers
+                Designed and implemented completely new features to meet the
+                needs of our largest customers
               </li>
               <li>
-                Complete thorough code reviews in GitHub to maintain high quality
-                code
+                Complete thorough code reviews in GitHub to maintain high
+                quality code
               </li>
               <li>
-                Facilitate daily standup, sprint planning, estimations, and sprint
-                reviews for team of 15
+                Facilitate daily standup, sprint planning, estimations, and
+                sprint reviews for team of 15
               </li>
               <li>
                 Identify and resolve impediments to keep work moving forward
@@ -183,13 +182,13 @@ const ArcESBBadges = [
                 world progress
               </li>
               <li>
-                Together with the Product Owner, work to prioritize backlog items
-                so they align with present needs
+                Together with the Product Owner, work to prioritize backlog
+                items so they align with present needs
               </li>
             </template>
             <template v-slot:footer>
               <template v-for="item in mckessonBadges">
-                <Badge class="m-1 bg-zinc-400">{{ item }}</Badge>
+                <Badge class="m-1">{{ item }}</Badge>
               </template>
             </template>
           </job-info>
@@ -200,11 +199,12 @@ const ArcESBBadges = [
             :endDate="`11/2019`"
           >
             <template v-slot:description>
-              My tenure as a Technical Support Engineer at ArcESB involved direct
-              interaction with clients to implement AS2 and EDI solutions,
-              developing custom solutions for unique client needs, contributing to
-              the company's knowledge base and documentation, and creating
-              promotional video content for the company's rebranding efforts.
+              My tenure as a Technical Support Engineer at ArcESB involved
+              direct interaction with clients to implement AS2 and EDI
+              solutions, developing custom solutions for unique client needs,
+              contributing to the company's knowledge base and documentation,
+              and creating promotional video content for the company's
+              rebranding efforts.
             </template>
             <template v-slot:responsibilities>
               <li>
@@ -222,7 +222,7 @@ const ArcESBBadges = [
             </template>
             <template v-slot:footer>
               <template v-for="item in ArcESBBadges">
-                <Badge class="m-1 bg-zinc-400">{{ item }}</Badge>
+                <Badge class="m-1">{{ item }}</Badge>
               </template>
             </template>
           </job-info>
@@ -243,8 +243,8 @@ const ArcESBBadges = [
                 system
               </li>
               <li>
-                Worked closely with a high profile client to build an application
-                that suits their customers unique needs
+                Worked closely with a high profile client to build an
+                application that suits their customers unique needs
               </li>
             </template>
           </job-info>
@@ -255,9 +255,10 @@ const ArcESBBadges = [
             :endDate="`10/2018`"
           >
             <template v-slot:description>
-              A 12-week immersive training program at Momentum Learning, focusing
-              on object-oriented programming and project-based learning, including
-              code reviews, technical presentations, and pair programming.
+              A 12-week immersive training program at Momentum Learning,
+              focusing on object-oriented programming and project-based
+              learning, including code reviews, technical presentations, and
+              pair programming.
             </template>
             <template v-slot:responsibilities>
               <li>Specialized in Back-End Development; Ruby on Rails</li>
@@ -274,9 +275,9 @@ const ArcESBBadges = [
             :endDate="`10/2018`"
           >
             <template v-slot:description>
-              Sole back-end developer for the WaveWise project during the Momentum
-              Learning capstone, focusing on creating a robust data infrastructure
-              and API.
+              Sole back-end developer for the WaveWise project during the
+              Momentum Learning capstone, focusing on creating a robust data
+              infrastructure and API.
             </template>
             <template v-slot:responsibilities>
               <li>
@@ -296,9 +297,9 @@ const ArcESBBadges = [
             :endDate="`Present`"
           >
             <template v-slot:description>
-              Manage a team of audio and visual technicians, overseeing training,
-              scheduling, and technical infrastructure implementation at Vintage
-              Durham.
+              Manage a team of audio and visual technicians, overseeing
+              training, scheduling, and technical infrastructure implementation
+              at Vintage Durham.
             </template>
             <template v-slot:responsibilities>
               <li>Managed growth of technician team from 3 to 10 members</li>
@@ -318,8 +319,9 @@ const ArcESBBadges = [
             :endDate="`07/2018`"
           >
             <template v-slot:description>
-              As a Pharmacy Technician at Duke University Hospital, I was involved
-              in compounding medications and improving pharmacy operations.
+              As a Pharmacy Technician at Duke University Hospital, I was
+              involved in compounding medications and improving pharmacy
+              operations.
             </template>
             <template v-slot:responsibilities>
               <li>Compounded chemotherapy and supplemental care medications</li>
@@ -336,8 +338,9 @@ const ArcESBBadges = [
             :endDate="`04/2017`"
           >
             <template v-slot:description>
-              Founder of Old Anchor Films, a boutique wedding and commercial film
-              company in Wilmington, handling international and local clients.
+              Founder of Old Anchor Films, a boutique wedding and commercial
+              film company in Wilmington, handling international and local
+              clients.
             </template>
             <template v-slot:responsibilities>
               <li>Managed multiple film projects under strict deadlines</li>
@@ -394,8 +397,9 @@ const ArcESBBadges = [
             :endDate="`07/2014`"
           >
             <template v-slot:description>
-              Video Producer at Liberty University, involved in filming, editing,
-              and managing equipment for various international university events.
+              Video Producer at Liberty University, involved in filming,
+              editing, and managing equipment for various international
+              university events.
             </template>
             <template v-slot:responsibilities>
               <li>
@@ -407,11 +411,10 @@ const ArcESBBadges = [
             </template>
           </job-info>
         </div>
-     </div>
+      </div>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .experience-page {
@@ -427,7 +430,10 @@ const ArcESBBadges = [
   align-items: left;
   gap: 1rem;
   margin: auto;
-  > * {
-  }
+}
+
+Badge {
+  background-color: var(--menu-background);
+  color: var(--natural);
 }
 </style>

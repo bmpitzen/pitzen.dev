@@ -28,13 +28,16 @@
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: var(--cedar);
     --destructive-foreground: 0 0% 98%;
 
     --ring: 0 0% 3.9%;
 
     --radius: 8px;
-    
+
+    --menu-background: var(--sage);
+    --menu-foreground: var(--charcoal);
+
     --spruce: #20513f;
     --black: #1c1c1a;
     --sound: #13352c;
@@ -55,10 +58,10 @@
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
 
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: var(--spruce);
+    --popover-foreground: var(--natural);
 
-    --card: #13352c;
+    --card: var(--spruce);
     --card-foreground: 0 0% 98%;
 
     --border: 0 0% 14.9%;
@@ -73,10 +76,13 @@
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: var(--salmonberry);
     --destructive-foreground: 0 0% 98%;
 
     --ring: 0 0% 83.1%;
+
+    --menu-background: var(--spruce);
+    --menu-foreground: var(--natural);
   }
 }
 
@@ -86,6 +92,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    @font-face {
+      font-family: "National Park", sans-serif;
+      font-weight: normal;
+      font-style: normal;
+      src: url("public/fonts/NationalPark-VariableVF.woff2") format("woff2");
+    }
+    font-family: "National Park", sans-serif;
   }
   h1 {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
