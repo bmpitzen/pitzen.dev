@@ -40,6 +40,10 @@ function onSubmit(values: Record<string, any>) {
 <template>
   <AutoForm
     class="w-2/3 space-y-6 form"
+    name="contact"
+    method="post"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
     :schema="schema"
     :field-config="{
       fullName: { label: 'Full Name' },
