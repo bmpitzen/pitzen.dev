@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from "zod";
-import { h } from "vue";
+import { ref, h } from "vue";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
 import type { Config } from "@/components/ui/auto-form";
@@ -25,36 +25,58 @@ const schema = z.object({
 
   message: z.string().min(10, {
     message:
-      "Please let me know a a brief description why you are reaching out.",
+      "Please let me know a brief description of why you are reaching out.",
   }),
 });
 
-function onSubmit(values: Record<string, any>) {
-  console.log(values);
-  toast({
-    title: "Thank you for contacting me. I'll be in touch soon!",
-  });
+function onSubmit(event: Event, values: Record<string, any>) {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+
+  const formData = new FormData(form);
+  formData.append("form-name", "contact"); // Name of the form
+
+  fetch("/", {
+    method: "POST",
+    body: formData,
+  })
+    .then(() => {
+      toast({
+        title: "Thank you for contacting me. I'll be in touch soon!",
+      });
+      form.reset();
+    })
+    .catch((error) => {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Oops! Something went wrong. Please try again.",
+      });
+    });
 }
 </script>
 
 <template>
-  <AutoForm
-    class="w-2/3 space-y-6 form"
+  <form
     name="contact"
-    method="post"
+    method="POST"
     data-netlify="true"
-    data-netlify-honeypot="bot-field"
-    :schema="schema"
-    :field-config="{
-      fullName: { label: 'Full Name' },
-      email: { label: 'Email' },
-      contactReason: { label: 'Contact Reason' },
-      message: { label: 'Message' },
-    }"
-    @submit="onSubmit"
+    @submit="onSubmit($event, formValues)"
   >
-    <Button type="submit"> Submit </Button>
-  </AutoForm>
+    <AutoForm
+      class="w-2/3 space-y-6 form"
+      :schema="schema"
+      :field-config="{
+        fullName: { label: 'Full Name' },
+        email: { label: 'Email' },
+        contactReason: { label: 'Contact Reason' },
+        message: { label: 'Message' },
+      }"
+      v-slot="{ formValues }"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <Button type="submit"> Submit </Button>
+    </AutoForm>
+  </form>
   <Toaster class="rounded-lg"/>
 </template>
 
