@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button";
           <NuxtLink to="about"><MenubarItem>About</MenubarItem></NuxtLink>
           <MenubarSeparator />
           <NuxtLink to="contact"><MenubarItem>Contact</MenubarItem></NuxtLink>
+          <NuxtLink to="contactTest"><MenubarItem>Contact Test</MenubarItem></NuxtLink>
           <MenubarSeparator />
           <a href=""><MenubarItem>Resume</MenubarItem></a>
         </MenubarContent>
