@@ -21,20 +21,28 @@ const schema = z.object({
       message: "Email must be valid.",
     }),
 
-  contactReason: z.enum(["Job", "Fun", "Curiosity"]).optional(),
-
-  message: z.string().min(10, {
+  contactReason: z
+    .enum(["Job", "Fun", "Curiosity", "We met at WWDC"]),
+    
+  message: z.string().min(4, {
     message:
       "Please let me know a brief description of why you are reaching out.",
   }),
 });
 
-function onSubmit(event: Event, values: Record<string, any>) {
-  event.preventDefault();
-  const form = event.target as HTMLFormElement;
+const formValues = ref({});
 
-  const formData = new FormData(form);
+function onSubmit(event: Event) {
+  event.preventDefault();
+  const contactForm = ref<HTMLFormElement | null>(null);
+  let formData = new FormData(contactForm.value);
+
   formData.append("form-name", "contact"); // Name of the form
+
+  for (const [key, value] of Object.entries(formValues.value)) {
+    formData.append(key, value as string);
+  }
+  console.log("Form data:", formData);
 
   fetch("/", {
     method: "POST",
@@ -57,10 +65,11 @@ function onSubmit(event: Event, values: Record<string, any>) {
 
 <template>
   <form
+    ref="contactForm"
     name="contact"
     method="POST"
     data-netlify="true"
-    @submit="onSubmit($event, formValues)"
+    @submit="onSubmit"
   >
     <AutoForm
       class="w-2/3 space-y-6 form"
@@ -71,13 +80,13 @@ function onSubmit(event: Event, values: Record<string, any>) {
         contactReason: { label: 'Contact Reason' },
         message: { label: 'Message' },
       }"
-      v-slot="{ formValues }"
+      v-model="formValues"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <Button type="submit"> Submit </Button>
+      <Button @click="onSubmit" type="submit"> Submit </Button>
     </AutoForm>
   </form>
-  <Toaster class="rounded-lg"/>
+  <Toaster class="rounded-lg" />
 </template>
 
 <style scoped>
