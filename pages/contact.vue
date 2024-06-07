@@ -1,75 +1,10 @@
-<script setup lang="ts">
-import * as z from "zod";
-import { ref, h } from "vue";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/toast";
-import type { Config } from "@/components/ui/auto-form";
-import { AutoForm, AutoFormField } from "@/components/ui/auto-form";
-
-const schema = z.object({
-  fullName: z
-    .string({
-      required_error: "Full name is required.",
-    })
-    .min(2),
-
-  email: z
-    .string({
-      required_error: "Email is required.",
-    })
-    .email({
-      message: "Email must be valid.",
-    }),
-
-  contactReason: z
-    .enum(["Job", "Fun", "Curiosity", "We met at WWDC"]),
-    
-  message: z.string().min(4, {
-    message:
-      "Please let me know a brief description of why you are reaching out.",
-  }),
-});
-
-const formValues = ref({});
-
-function onSubmit(event: Event) {
-  event.preventDefault();
-  const contactForm = ref<HTMLFormElement | null>(null);
-  let formData = new FormData(contactForm.value);
-
-  formData.append("form-name", "contact"); // Name of the form
-
-  for (const [key, value] of Object.entries(formValues.value)) {
-    formData.append(key, value as string);
-  }
-  console.log("Form data:", formData);
-
-  fetch("/", {
-    method: "POST",
-    body: formData,
-  })
-    .then(() => {
-      toast({
-        title: "Thank you for contacting me. I'll be in touch soon!",
-      });
-      form.reset();
-    })
-    .catch((error) => {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Oops! Something went wrong. Please try again.",
-      });
-    });
-}
-</script>
-
 <template>
   <form
     ref="contactForm"
     name="contact"
     method="POST"
     data-netlify="true"
-    @submit="onSubmit"
+    @submit.prevent="onSubmit"
   >
     <AutoForm
       class="w-2/3 space-y-6 form"
@@ -81,9 +16,10 @@ function onSubmit(event: Event) {
         message: { label: 'Message' },
       }"
       v-model="formValues"
+      v-bind="$attrs"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <Button @click="onSubmit" type="submit"> Submit </Button>
+      <Button type="submit">Submit</Button> <!-- Ensure the button does not directly handle click event -->
     </AutoForm>
   </form>
   <Toaster class="rounded-lg" />
@@ -95,3 +31,70 @@ function onSubmit(event: Event) {
   max-width: 40rem;
 }
 </style>
+
+<script setup lang="ts">
+import * as z from "zod";
+import { ref, onMounted } from "vue"; // Import onMounted to check ref initialization
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+import { AutoForm } from "@/components/ui/auto-form";
+
+// Define schema
+const schema = z.object({
+  fullName: z
+    .string({ required_error: "Full name is required." })
+    .min(2),
+  email: z
+    .string({ required_error: "Email is required." })
+    .email({ message: "Email must be valid." }),
+  contactReason: z.enum([
+    "Job", "Fun", "Curiosity", "We met at WWDC"
+  ]),
+  message: z.string().min(4, {
+    message: "Please let me know a brief description of why you are reaching out.",
+  }),
+});
+
+const formValues = ref<{ [key: string]: string }>({});
+const contactForm = ref<HTMLFormElement | null>(null);
+
+// Check if contactForm is correctly bound
+onMounted(() => {
+  if (!contactForm.value) {
+    console.error("Contact form ref is not correctly bound.");
+  }
+});
+
+// Handle form submission
+function onSubmit(event: Event) {
+  event.preventDefault(); // Prevent default form submission
+
+  if (!contactForm.value) {
+    console.error("Contact form element is not found.");
+    return;
+  }
+
+  const formData = new FormData(contactForm.value);
+  formData.append("form-name", "contact"); // Add the form name to the form data
+
+  for (const [key, value] of Object.entries(formValues.value)) {
+    formData.append(key, value);
+  }
+  
+  console.log("Form data:", Object.fromEntries(formData));
+
+  // Form submission handling
+  fetch("/", {
+    method: "POST",
+    body: formData,
+  })
+    .then(() => {
+      toast({ title: "Thank you for contacting me. I'll be in touch soon!" });
+      contactForm.value?.reset();
+    })
+    .catch((error) => {
+      console.error("Form submission error:", error);
+      toast({ title: "Oops! Something went wrong. Please try again." });
+    });
+}
+</script>
