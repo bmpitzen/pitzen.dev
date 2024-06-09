@@ -1,81 +1,56 @@
-<template>
-  <form
-    @submit.prevent="handleSubmit"
-    action="/"
-    method="POST"
-    data-netlify="true"
-    name="contactForm"
-  >
-    <input type="hidden" name="form-name" value="contactForm" />
-    <p class="hidden">
-      <label
-        >Don’t fill this out if you're human: <input name="bot-field"
-      /></label>
-    </p>
-    <!-- Your form fields here -->
-    <div style="width: 33%; display: flex; flex-direction: column; gap: 2rem">
-      <input
-        type="text"
-        name="name"
-        v-model="formFields.name"
-        placeholder="Name"
-      />
-      <input
-        type="email"
-        name="email"
-        v-model="formFields.email"
-        placeholder="Email"
-      />
-      <textarea
-        name="message"
-        v-model="formFields.message"
-        placeholder="Message"
-      ></textarea>
-      <button type="submit">Submit</button>
-    </div>
-  </form>
-  <Toaster class="rounded-lg" />
-</template>
-
-<script>
-import { ref } from "vue";
+<script setup lang="ts">
+import * as z from "zod";
+import { h } from "vue";
+import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
+import { AutoForm, AutoFormField } from "@/components/ui/auto-form";
 
-export default {
-  setup() {
-    const formFields = ref({
-      name: "",
-      email: "",
-      message: "",
-    });
+const schema = z.object({
+  username: z
+    .string({
+      required_error: "Username is required.",
+    })
+    .min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
 
-    const handleSubmit = () => {
-      const form = document.querySelector("form");
-      const formData = new FormData(form);
-      formData.append("form-name", "contactForm");
+  password: z
+    .string({
+      required_error: "Password is required.",
+    })
+    .min(2, {
+      message: "Password must be at least 2 characters.",
+    }),
+});
 
-      console.log("Form data:", Object.fromEntries(formData));
-
-      fetch("/", {
-        method: "POST",
-        body: formData,
-      })
-        .then(() => {
-          toast({
-            title: "Thank you for contacting me. I'll be in touch soon!",
-          });
-          contactForm.value?.reset();
-        })
-        .catch((error) => {
-          console.error("Form submission error:", error);
-          toast({ title: "Oops! Something went wrong. Please try again." });
-        });
-    };
-
-    return {
-      formFields,
-      handleSubmit,
-    };
-  },
-};
+function onSubmit(values) {
+  console.log(values);
+  toast({
+    title: "You submitted the following values:",
+    description: h(
+      "pre",
+      { class: "mt-2 w-[340px] rounded-md bg-slate-950 p-4" },
+      h("code", { class: "text-white" }, JSON.stringify(values, null, 2))
+    ),
+  });
+}
 </script>
+
+<template>
+  <AutoForm
+    class="w-2/3 space-y-6"
+    :schema="schema"
+    :field-config="{
+      password: {
+        label: 'Your secure password',
+        inputProps: {
+          type: 'password',
+          placeholder: '••••••••',
+        },
+      },
+    }"
+    @submit="onSubmit"
+  >
+    <Button type="submit"> Submit </Button>
+  </AutoForm>
+</template>
