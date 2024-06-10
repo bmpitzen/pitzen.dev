@@ -33,7 +33,7 @@ const ArcESBBadges = [
 </script>
 
 <template>
-  <div class="experience-page">
+ <!-- <div class="experience-page">
     <h1>Experience</h1>
     <div class="experience-cards">
       <job-info
@@ -348,7 +348,7 @@ const ArcESBBadges = [
         </template>
       </job-info>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>

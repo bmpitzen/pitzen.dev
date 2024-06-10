@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 </script>
 
 <template>
-  <div class="container grid grid-cols-3 mt-10">
+ <!-- <div class="container grid grid-cols-3 mt-10">
     <div class="col-span-2"">
       <h1>About</h1>
       <p class="scroll-m-20 text-lg font-medium text-gray-500 lg:text-xl">
@@ -23,5 +23,5 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
         <AvatarFallback>BP</AvatarFallback>
       </Avatar>
     </div>
-  </div>
+  </div> -->
 </template>

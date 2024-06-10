@@ -70,6 +70,9 @@ const ArcESBBadges = [
           film photography enthusiast. I am always seeking new opportunities to
           learn, grow, and take on new challenges.
         </p>
+        <p class="scroll-m-20 text-lg lg:text-xl my-4">
+          If you want to connect, feel free to drop me a line at <a href="mailto:brandon@pitzen.dev" style="text-decoration: underline;">brandon@pitzen.dev</a> or find me on <a href="https://mastodon.social/@bmpitzen" style="text-decoration: underline;">Mastodon</a>.
+        </p>
       </div>
     </div>
     <div class="experience-page container grid grid-cols-3 mt-10 mb-20">
@@ -268,7 +271,7 @@ const ArcESBBadges = [
               </li>
             </template>
           </job-info>
-          <job-info
+   <!--       <job-info
             :jobTitle="`Back-End Developer for Momentum Capstone Project`"
             :company="`WaveWise`"
             :startDate="`10/2018`"
@@ -289,12 +292,12 @@ const ArcESBBadges = [
               </li>
               <li>Integrated external APIs for buoy and weather data</li>
             </template>
-          </job-info>
+          </job-info> -->
           <job-info
             :jobTitle="`Manager: A/V Team`"
             :company="`Vintage Durham`"
             :startDate="`06/2018`"
-            :endDate="`Present`"
+            :endDate="`03/2020`"
           >
             <template v-slot:description>
               Manage a team of audio and visual technicians, overseeing
@@ -371,7 +374,7 @@ const ArcESBBadges = [
               </li>
             </template>
           </job-info>
-          <job-info
+  <!--        <job-info
             :jobTitle="`Producer & Video Editor`"
             :company="`EventMix Promotions`"
             :startDate="`03/2015`"
@@ -409,7 +412,7 @@ const ArcESBBadges = [
               <li>Designed promotional content for events</li>
               <li>Managed equipment inventory and rentals</li>
             </template>
-          </job-info>
+          </job-info> -->
         </div>
       </div>
     </div>

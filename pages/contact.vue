@@ -1,12 +1,5 @@
 <template>
-  <form
-    ref="contactForm"
-    name="contact"
-    method="POST"
-    data-netlify="true"
-    @submit.prevent="onSubmit"
-  >
-    <AutoForm
+ <!--   <AutoForm
       class="w-2/3 space-y-6 form"
       :schema="schema"
       :field-config="{
@@ -15,14 +8,12 @@
         contactReason: { label: 'Contact Reason' },
         message: { label: 'Message' },
       }"
-      v-model="formValues"
-      v-bind="$attrs"
+      @submit="onSubmit"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <Button type="submit">Submit</Button> <!-- Ensure the button does not directly handle click event -->
+      <Button type="submit">Submit</Button>
     </AutoForm>
-  </form>
-  <Toaster class="rounded-lg" />
+  <Toaster class="rounded-lg" /> -->
 </template>
 
 <style scoped>
@@ -41,17 +32,14 @@ import { AutoForm } from "@/components/ui/auto-form";
 
 // Define schema
 const schema = z.object({
-  fullName: z
-    .string({ required_error: "Full name is required." })
-    .min(2),
+  fullName: z.string({ required_error: "Full name is required." }).min(2),
   email: z
     .string({ required_error: "Email is required." })
     .email({ message: "Email must be valid." }),
-  contactReason: z.enum([
-    "Job", "Fun", "Curiosity", "We met at WWDC"
-  ]),
+  contactReason: z.enum(["WWDC", "Work", "Fun"]),
   message: z.string().min(4, {
-    message: "Please let me know a brief description of why you are reaching out.",
+    message:
+      "Hey! How can I help you?",
   }),
 });
 
@@ -65,36 +53,46 @@ onMounted(() => {
   }
 });
 
-// Handle form submission
-function onSubmit(event: Event) {
-  event.preventDefault(); // Prevent default form submission
+function onSubmit(values) {
+  console.log(values);
+  toast({
+    title: "Thank you for contacting me. I'll be in touch soon!",
+    description: JSON.stringify(values, null, 2),
+  });
 
-  if (!contactForm.value) {
-    console.error("Contact form element is not found.");
-    return;
-  }
-
-  const formData = new FormData(contactForm.value);
-  formData.append("form-name", "contact"); // Add the form name to the form data
-
-  for (const [key, value] of Object.entries(formValues.value)) {
-    formData.append(key, value);
-  }
-  
-  console.log("Form data:", Object.fromEntries(formData));
-
-  // Form submission handling
-  fetch("/", {
-    method: "POST",
-    body: formData,
-  })
-    .then(() => {
-      toast({ title: "Thank you for contacting me. I'll be in touch soon!" });
-      contactForm.value?.reset();
-    })
-    .catch((error) => {
-      console.error("Form submission error:", error);
-      toast({ title: "Oops! Something went wrong. Please try again." });
-    });
 }
+
+// Handle form submission
+// function onSubmit(event: Event) {
+//   event.preventDefault(); // Prevent default form submission
+
+//   if (!contactForm.value) {
+//     console.error("Contact form element is not found.");
+//     return;
+//   }
+
+//   const formData = new FormData(contactForm.value);
+//   console.log("Form data pre:", Object.fromEntries(formData));
+//   formData.append("form-name", "contact"); // Add the form name to the form data
+
+//   for (const [key, value] of Object.entries(formValues.value)) {
+//     formData.append(key, value);
+//   }
+
+//   console.log("Form data post:", Object.fromEntries(formData));
+
+//   // Form submission handling
+//   fetch("/", {
+//     method: "POST",
+//     body: formData,
+//   })
+//     .then(() => {
+//       toast({ title: "Thank you for contacting me. I'll be in touch soon!" });
+//       contactForm.value?.reset();
+//     })
+//     .catch((error) => {
+//       console.error("Form submission error:", error);
+//       toast({ title: "Oops! Something went wrong. Please try again." });
+//     });
+// }
 </script>
