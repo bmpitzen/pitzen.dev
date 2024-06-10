@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
       ><img src="assets/spruce.svg"
     /></NuxtLink>
     <div class="right">
-      <MenubarMenu>
+     <!--  <MenubarMenu>
         <MenubarTrigger>Menu</MenubarTrigger>
         <MenubarContent>
           <NuxtLink to="/"><MenubarItem>Home</MenubarItem></NuxtLink>
@@ -32,7 +32,7 @@ import { Button } from "@/components/ui/button";
           <MenubarSeparator />
           <a href=""><MenubarItem>Resume</MenubarItem></a>
         </MenubarContent>
-      </MenubarMenu>
+      </MenubarMenu> -->
       <ThemeSwitcher />
     </div>
   </Menubar>

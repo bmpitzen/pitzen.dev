@@ -1,5 +1,5 @@
 <template>
-    <AutoForm
+ <!--   <AutoForm
       class="w-2/3 space-y-6 form"
       :schema="schema"
       :field-config="{
@@ -12,9 +12,8 @@
     >
       <input type="hidden" name="form-name" value="contact" />
       <Button type="submit">Submit</Button>
-      <!-- Ensure the button does not directly handle click event -->
     </AutoForm>
-  <Toaster class="rounded-lg" />
+  <Toaster class="rounded-lg" /> -->
 </template>
 
 <style scoped>
