@@ -16,4 +16,12 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
+  app: {
+    head: {
+      meta: [
+        // Block AI crawlers globally
+        { name: 'robots', content: 'max-snippet:-1, max-image-preview:large, max-video-preview:-1' },
+      ]
+    }
+  }
 });
