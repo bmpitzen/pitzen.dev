@@ -4,20 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Minimal personal portfolio website built with Nuxt 3 and hosted on Netlify. The site is a single-page application (SPA) showcasing work experience, with custom theming and shadcn-vue UI components.
+Minimal personal portfolio website built with Nuxt 4 and hosted on Netlify. Uses pnpm as the package manager. The site is a single-page application (SPA) showcasing work experience, with custom theming and shadcn-vue UI components.
 
 ## Development Commands
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run generate` - Generate static site
-- `npm run preview` - Preview production build locally
-- `npm install` - Install dependencies (runs `nuxt prepare` automatically via postinstall)
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm generate` - Generate static site
+- `pnpm preview` - Preview production build locally
+- `pnpm install` - Install dependencies (runs `nuxt prepare` automatically via postinstall)
 
 ## Architecture
 
 ### Framework & Routing
-- **Nuxt 3** with file-based routing via `pages/` directory
+- **Nuxt 4** (legacy v3 directory layout, auto-detected) with file-based routing via `pages/` directory
 - SPA mode (converted from multi-page to single-page application)
 - Main entry point: [app.vue](app.vue) wraps all pages with `<NuxtLayout>` and `<NuxtPage>`
 - Pages: [index.vue](pages/index.vue), [about.vue](pages/about.vue), [contact.vue](pages/contact.vue), [experience.vue](pages/experience.vue), [contactTest.vue](pages/contactTest.vue)

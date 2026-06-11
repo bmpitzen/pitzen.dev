@@ -6,7 +6,7 @@ import {
   DropdownMenuItemIndicator,
   useEmitAsProps,
 } from 'radix-vue'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<DropdownMenuCheckboxItemProps & { class?: string }>()

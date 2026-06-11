@@ -4,7 +4,7 @@ import {
   RadioGroupItem,
   type RadioGroupItemProps,
 } from 'radix-vue'
-import { Circle } from 'lucide-vue-next'
+import { Circle } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<RadioGroupItemProps & { class?: string }>()

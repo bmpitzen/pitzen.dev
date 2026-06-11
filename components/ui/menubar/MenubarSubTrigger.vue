@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MenubarSubTrigger, type MenubarSubTriggerProps } from 'radix-vue'
-import { ChevronRight } from 'lucide-vue-next'
+import { ChevronRight } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<MenubarSubTriggerProps & { inset?: boolean; class?: string }>()
