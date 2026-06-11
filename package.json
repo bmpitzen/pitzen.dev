@@ -7,14 +7,19 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "resume:pdf": "node resume/build.js",
+    "resume:dev": "node resume/serve.js"
   },
   "devDependencies": {
     "@iconify-json/radix-icons": "^1.1.14",
     "@iconify/vue": "^4.1.1",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/tailwindcss": "^6.11.2",
+    "marked": "^18.0.4",
+    "md-to-pdf": "^5.2.5",
     "nuxt": "^3.9.3",
+    "puppeteer": "^25.1.0",
     "shadcn-nuxt": "^0.8.7",
     "typescript": "^5.3.3",
     "vue": "^3.4.14",

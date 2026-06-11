@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Brandon Pitzen — Résumé</title>
+    <style>
+      /* fonts embedded at build time (see build.js) */
+      {{FONT_FACES}}
+      /* visual template */
+      {{CSS}}
+    </style>
+  </head>
+  <body>
+    <div class="resume">
+      <aside class="sidebar">
+        <img class="avatar" src="{{AVATAR}}" alt="Brandon Pitzen" />
+        <div class="name">{{SIDEBAR_NAME}}</div>
+        <div class="tree" aria-hidden="true">
+          <span class="rule"></span>
+          {{TREE_SVG}}
+          <span class="rule"></span>
+        </div>
+        <div class="contact">{{CONTACT}}</div>
+        <div class="sidebar-body">{{SIDEBAR_BODY}}</div>
+      </aside>
+      <main class="main">{{MAIN}}</main>
+    </div>
+  </body>
+</html>
